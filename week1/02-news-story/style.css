@@ -1,0 +1,118 @@
+body{
+    background-color: lightblue;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+header{
+    background-color: #003366;
+    /* color: white; */
+    padding: 10px;
+}
+marquee{
+    color: yellow;
+    text-decoration: underline;
+}
+article{
+    margin: 20px 0;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    border-color: black;
+    /* border-width: 20px; */
+    /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+}
+h1{
+    color: #003366;
+}
+.content2{
+    color: purple;
+}
+h2{
+    color: #003366;
+}
+footer{
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+.content{
+    color: #333;
+}
+.content1{
+    font-size: 14px;
+    color:white;
+}
+.navbar {
+    overflow: hidden;
+    background-color: rgb(100, 196, 185);
+    /* color: white; */
+    text-align: center; 
+    text-decoration: solid;
+}
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.navbar a:hover {
+    background-color: #ddd;
+    color: #003366;
+    font-weight: bold;
+}
+.heading1{
+
+    color: teal;
+    text-align: center;
+}
+
+*{
+    
+    box-sizing: border-box;
+}
+.highlight{
+    color: #003366;
+    font-weight: bold;
+    text-align: center;
+}
+h3{
+    color: teal;   
+}
+h4{
+    color: teal;
+}
+form{
+    background-color: white;
+    max-width: fit-content;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+button{
+    background-color: #003366;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover{
+    background-color: #0055a5;
+}
+.date{
+    text-align: center;
+    font-size: 18px;
+    color: #003366;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
