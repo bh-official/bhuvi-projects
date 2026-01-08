@@ -1,0 +1,125 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.header-container {
+  background-color: tomato;
+  color: white;
+  padding: 40px 60px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+header h1 {
+  color: white;
+}
+
+/* Navigation (Flexbox) */
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero Sections */
+.hero {
+  height: 100vh;
+  background-image: url("images/tomatoes.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-bottom: 1px solid white;
+}
+
+.hero:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: white;
+}
+/* Other background images */
+.timers {
+  background-image: url("images/timer.jpg");
+}
+
+.bags {
+  background-image: url("images/bag.jpg");
+}
+
+/* Text overlay */
+.overlay-text {
+  color: tomato;
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  max-width: 600px;
+}
+
+.overlay-text h2 {
+  margin-bottom: 10px;
+  
+}
+
+.tag {
+  font-size: 16px;
+  
+  color: tomato;
+  margin-bottom: 15px;
+}
+
+/* Buttons */
+button {
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: green;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: white;
+  color: black;
+  border-color: tomato;
+}
+
+/* Footer */
+footer {
+  background: tomato;
+  color: white;
+  text-align: center;
+  padding: 40px 60px;
+}
