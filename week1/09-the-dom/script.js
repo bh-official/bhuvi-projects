@@ -4,20 +4,22 @@ myPTag.style.fontSize = '30px';
 myPTag.style.border = '2px solid black';
 myPTag.style.padding = '10px';
 myPTag.style.backgroundColor = 'lightgrey';
-
 myPTag.innerText = 'This is the updated paragraph text!';
+myPTag.textContent= 'This is the updated paragraph text using textContent!';
 myPTag.style.textAlign = 'center';
 myPTag.style.fontFamily = 'Arial, sans-serif';
 myPTag.style.borderRadius = '8px';
+console.log(myPTag);
 
-// const hTag = document.querySelector('h1');
-// hTag.style.color = 'green';
-// hTag.style.textDecoration = 'underline';
-// hTag.style.marginBottom = '20px';
-// hTag.style.fontFamily = 'Georgia, serif';
-// hTag.innerText = 'Welcome to the DOM Manipulation Example';
-// hTag.style.textAlign = 'center';
-// hTag.style.textTransform = 'uppercase'; 
+const hTag = document.querySelector('h1');
+hTag.style.color = 'green';
+hTag.style.textDecoration = 'underline';
+hTag.style.marginBottom = '20px';
+hTag.style.fontFamily = 'Georgia, serif';
+hTag.innerText = 'Welcome to the DOM Manipulation Example';
+hTag.style.textAlign = 'center';
+hTag.style.textTransform = 'uppercase'; 
+
 
 const firstPTag = document.querySelector('.first'); 
 firstPTag.style.fontWeight = 'bold';
@@ -41,3 +43,14 @@ someMarquee.style.fontWeight = 'bold';
 someMarquee.style.marginTop = '20px';
 // need to add this to any parent element to make it visible in the DOM
 document.body.appendChild(someMarquee);
+
+
+const text1 = document.createTextNode('This is a text node added to the body.');
+document.body.appendChild(text1);
+
+text1.remove();
+
+function increase() {
+    let number = document.getElementById("count");
+    number.textContent = Number(number.textContent) + 1;
+  }
