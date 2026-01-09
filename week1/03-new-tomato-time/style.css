@@ -183,6 +183,11 @@ html {
 
 }
 
+img:not(.footer-logos img) {
+  width: 100%;
+}
+
+
 /* Footer logos */
 .footer-logos {
   margin-top: 15px;
@@ -192,8 +197,10 @@ html {
 }
 
 .footer-logos img {
-  width: 40px;     /* small size */
-  height: 30px;
+  width: 40px !important;     /* small size */
+  height: 30px !important;
+  max-width: 40px !important;
+  max-height: 30px !important;
   cursor: pointer;
 }
 .footer-logos img:hover {
