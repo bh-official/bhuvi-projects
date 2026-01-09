@@ -82,20 +82,25 @@ nav a:hover {
   color: tomato;
   position: absolute;
   bottom: 10%;
-  left: 5%;
+  left: 3%;
   background: rgba(255, 255, 255, 0.85);
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   max-width: 600px;
+  border-radius: 8px;
 }
 
-.overlay-text h2 {
-  margin-bottom: 10px;
+.overlay-text h1 {
+  color: tomato;
+  font-size: 40px;
+  ;
   
 }
 
 .tag {
   font-size: 16px;
-  
   color: tomato;
   margin-bottom: 15px;
 }
@@ -103,17 +108,22 @@ nav a:hover {
 /* Buttons */
 button {
   font-weight: bold;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: green;
+  margin-top: 30px;
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  background: darkgreen;
   color: white;
   cursor: pointer;
-}
+  border-color: darkgreen;
+   }
 
+/* Button hover effect */
 button:hover {
   background: white;
   color: black;
   border-color: tomato;
+  border: 2px solid tomato;
 }
 
 /* Footer */
@@ -123,3 +133,73 @@ footer {
   text-align: center;
   padding: 40px 60px;
 }
+
+/* Back to top link */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: tomato;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* About section text */
+.about-text p {
+  margin-top: 70px;
+  line-height: 1.6;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 22px;
+  color:white;
+  margin-left: 50px;
+  margin-right: 50px;
+  justify-content: center;
+
+}
+
+/* Tag1 */
+.tag1 {
+  font-size: 28px;
+  padding-top: 150px;
+  text-align:center;
+  font-weight: bold;
+  color:white;
+  
+}
+
+/* About section */
+.image{
+  background-image: url("images/abouttomatoes.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+
+}
+
+/* Footer logos */
+.footer-logos {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.footer-logos img {
+  width: 40px;     /* small size */
+  height: 30px;
+  cursor: pointer;
+}
+.footer-logos img:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
+
+
+
