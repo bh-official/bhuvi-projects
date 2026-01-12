@@ -8,23 +8,23 @@
     --color-bg-tertiary: #1a1a25;
     --color-bg-card: rgba(255, 255, 255, 0.03);
     --color-bg-glass: rgba(255, 255, 255, 0.05);
-    
+
     --color-text-primary: #f5f5f7;
     --color-text-secondary: #a1a1aa;
     --color-text-muted: #71717a;
-    
+
     --color-accent-primary: #6366f1;
     --color-accent-secondary: #8b5cf6;
     --color-accent-gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
     --color-accent-glow: rgba(99, 102, 241, 0.4);
-    
+
     --color-border: rgba(255, 255, 255, 0.1);
     --color-border-focus: #6366f1;
-    
+
     /* Focus indicator - High contrast for accessibility */
     --focus-outline: 3px solid #6366f1;
     --focus-outline-offset: 3px;
-    
+
     /* Spacing */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -32,19 +32,19 @@
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
-    
+
     /* Border radius */
     --radius-sm: 0.5rem;
     --radius-md: 0.75rem;
     --radius-lg: 1rem;
     --radius-xl: 1.5rem;
-    
+
     /* Shadows */
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
     --shadow-glow: 0 0 40px var(--color-accent-glow);
-    
+
     /* Transitions */
     --transition-fast: 150ms ease;
     --transition-normal: 250ms ease;
@@ -412,12 +412,12 @@ kbd {
     .btn-text {
         display: inline;
     }
-    
+
     .thumbnail-btn {
         width: 90px;
         height: 65px;
     }
-    
+
     #image-title {
         font-size: 1.5rem;
     }
@@ -428,41 +428,41 @@ kbd {
     .header {
         padding: var(--spacing-2xl) var(--spacing-xl);
     }
-    
+
     .logo {
         font-size: 2.25rem;
     }
-    
+
     .tagline {
         font-size: 1.1rem;
     }
-    
+
     .main-content {
         padding: var(--spacing-2xl);
     }
-    
+
     .gallery-container {
         gap: var(--spacing-xl);
     }
-    
+
     /* Main image gets larger on desktop */
     .main-image {
         max-height: 70vh;
     }
-    
+
     .image-caption {
         padding: var(--spacing-xl);
     }
-    
+
     #image-title {
         font-size: 1.75rem;
     }
-    
+
     /* Desktop: Thumbnails displayed horizontally with centered alignment */
     .thumbnail-nav {
         order: 0;
     }
-    
+
     .thumbnail-list {
         justify-content: center;
         overflow-x: visible;
@@ -472,19 +472,19 @@ kbd {
         border-radius: var(--radius-lg);
         border: 1px solid var(--color-border);
     }
-    
+
     .thumbnail-btn {
         width: 120px;
         height: 80px;
         border-radius: var(--radius-md);
     }
-    
+
     /* Navigation buttons larger on desktop */
     .nav-btn {
         padding: var(--spacing-md) var(--spacing-2xl);
         font-size: 1.1rem;
     }
-    
+
     .keyboard-hint {
         font-size: 0.9rem;
     }
@@ -495,11 +495,11 @@ kbd {
     .gallery-section {
         max-width: 1400px;
     }
-    
+
     .main-image {
         max-height: 75vh;
     }
-    
+
     .thumbnail-btn {
         width: 140px;
         height: 95px;
@@ -507,9 +507,315 @@ kbd {
 }
 
 /* ==================================
+   Loading Skeleton
+   ================================== */
+.skeleton-loader {
+    position: absolute;
+    inset: 0;
+    background: var(--color-bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    opacity: 1;
+    transition: opacity var(--transition-slow);
+}
+
+.skeleton-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.skeleton-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 50%,
+            transparent 100%);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* ==================================
+   Image Fade Transitions
+   ================================== */
+.main-image {
+    opacity: 1;
+    transition: opacity var(--transition-normal), transform var(--transition-slow);
+}
+
+.main-image.fade-out {
+    opacity: 0;
+}
+
+.main-image.fade-in {
+    opacity: 1;
+}
+
+/* ==================================
+   Fullscreen Button
+   ================================== */
+.fullscreen-btn {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: all var(--transition-normal);
+    z-index: 10;
+}
+
+.main-image-container:hover .fullscreen-btn,
+.fullscreen-btn:focus {
+    opacity: 1;
+}
+
+.fullscreen-btn:hover {
+    background: var(--color-accent-primary);
+    transform: scale(1.1);
+}
+
+/* ==================================
+   Swipe Hint (Mobile)
+   ================================== */
+.swipe-hint {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    opacity: 0;
+    animation: swipeHintFade 4s ease-in-out forwards;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.swipe-icon {
+    font-size: 1.2rem;
+    animation: swipeIconMove 1s ease-in-out infinite;
+}
+
+@keyframes swipeHintFade {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes swipeIconMove {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+}
+
+/* Hide swipe hint on desktop */
+@media (min-width: 800px) {
+    .swipe-hint {
+        display: none;
+    }
+}
+
+/* ==================================
+   Lightbox Modal
+   ================================== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.lightbox:not([hidden]) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: lightboxZoom var(--transition-normal) ease-out;
+}
+
+@keyframes lightboxZoom {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-image {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-glass);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    color: var(--color-text-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.lightbox-close:hover {
+    background: var(--color-accent-primary);
+    transform: rotate(90deg);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-bg-glass);
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    color: var(--color-text-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.lightbox-prev {
+    left: -70px;
+}
+
+.lightbox-next {
+    right: -70px;
+}
+
+.lightbox-nav:hover {
+    background: var(--color-accent-gradient);
+    border-color: transparent;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Lightbox responsive adjustments */
+@media (max-width: 800px) {
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .lightbox-prev {
+        left: 10px;
+    }
+
+    .lightbox-next {
+        right: 10px;
+    }
+
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+    }
+
+    .lightbox-caption {
+        bottom: 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================================
    Reduced Motion - Accessibility
    ================================== */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -517,6 +823,15 @@ kbd {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+
+    .skeleton-shimmer {
+        animation: none;
+    }
+
+    .swipe-hint {
+        animation: none;
+        opacity: 1;
     }
 }
 
@@ -528,12 +843,12 @@ kbd {
         --color-border: rgba(255, 255, 255, 0.4);
         --focus-outline: 3px solid #fff;
     }
-    
+
     .nav-btn,
     .thumbnail-btn {
         border-width: 2px;
     }
-    
+
     .nav-btn:focus-visible,
     .thumbnail-btn:focus-visible {
         outline-width: 4px;

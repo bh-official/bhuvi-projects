@@ -5,7 +5,10 @@
  * - Image switching via thumbnails and navigation buttons
  * - Keyboard navigation with arrow keys
  * - ARIA live region updates for screen readers
- * - Proper focus management
+ * - Smooth fade transitions
+ * - Touch swipe gestures for mobile
+ * - Fullscreen lightbox mode
+ * - Loading skeleton animations
  */
 
 // ========================================
@@ -48,28 +51,95 @@ const galleryImages = [
 // State Management
 // ========================================
 let currentIndex = 0;
+let isTransitioning = false;
+let lightboxOpen = false;
+
+// Touch gesture state
+let touchStartX = 0;
+let touchEndX = 0;
+const SWIPE_THRESHOLD = 50;
 
 // ========================================
 // DOM Elements
 // ========================================
 const mainImage = document.getElementById('main-image');
+const mainImageContainer = document.getElementById('main-image-container');
 const imageTitle = document.getElementById('image-title');
 const imageCounter = document.getElementById('image-counter');
 const galleryStatus = document.getElementById('gallery-status');
 const thumbnailList = document.getElementById('thumbnail-list');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
+const skeletonLoader = document.getElementById('skeleton-loader');
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+// Lightbox elements
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightbox-image');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const lightboxClose = document.getElementById('lightbox-close');
+const lightboxPrev = document.getElementById('lightbox-prev');
+const lightboxNext = document.getElementById('lightbox-next');
+
+// ========================================
+// Loading & Skeleton Functions
+// ========================================
+
+/**
+ * Shows the loading skeleton
+ */
+function showSkeleton() {
+    skeletonLoader.classList.remove('hidden');
+}
+
+/**
+ * Hides the loading skeleton
+ */
+function hideSkeleton() {
+    skeletonLoader.classList.add('hidden');
+}
+
+/**
+ * Preloads an image and returns a promise
+ * @param {string} src - Image source URL
+ * @returns {Promise}
+ */
+function preloadImage(src) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = src;
+    });
+}
 
 // ========================================
 // Core Functions
 // ========================================
 
 /**
- * Updates the main gallery image display
+ * Updates the main gallery image display with fade transition
  * @param {number} index - The index of the image to display
  */
-function updateMainImage(index) {
+async function updateMainImage(index) {
+    if (isTransitioning || index === currentIndex) return;
+
+    isTransitioning = true;
     const image = galleryImages[index];
+
+    // Fade out current image
+    mainImage.classList.add('fade-out');
+    showSkeleton();
+
+    // Wait for fade out
+    await new Promise(resolve => setTimeout(resolve, 250));
+
+    // Preload new image
+    try {
+        await preloadImage(image.src);
+    } catch (error) {
+        console.error('Failed to load image:', error);
+    }
 
     // Update main image
     mainImage.src = image.src;
@@ -82,11 +152,29 @@ function updateMainImage(index) {
     // Update active thumbnail
     updateActiveThumbnail(index);
 
-    // Announce change to screen readers via ARIA live region
+    // Announce change to screen readers
     announceImageChange(image.title, index);
 
     // Update current index
     currentIndex = index;
+
+    // Fade in new image
+    hideSkeleton();
+    mainImage.classList.remove('fade-out');
+    mainImage.classList.add('fade-in');
+
+    // Clean up transition class
+    setTimeout(() => {
+        mainImage.classList.remove('fade-in');
+        isTransitioning = false;
+    }, 250);
+
+    // Update lightbox if open
+    if (lightboxOpen) {
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.textContent = image.title;
+    }
 }
 
 /**
@@ -170,6 +258,88 @@ function generateThumbnails() {
 }
 
 // ========================================
+// Lightbox Functions
+// ========================================
+
+/**
+ * Opens the lightbox modal
+ */
+function openLightbox() {
+    const image = galleryImages[currentIndex];
+
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+    lightboxCaption.textContent = image.title;
+
+    lightbox.hidden = false;
+    lightboxOpen = true;
+
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+
+    // Focus the close button for accessibility
+    setTimeout(() => lightboxClose.focus(), 100);
+
+    // Announce to screen readers
+    galleryStatus.textContent = `Lightbox opened. Viewing ${image.title} in fullscreen.`;
+}
+
+/**
+ * Closes the lightbox modal
+ */
+function closeLightbox() {
+    lightbox.hidden = true;
+    lightboxOpen = false;
+
+    // Restore body scroll
+    document.body.style.overflow = '';
+
+    // Return focus to fullscreen button
+    fullscreenBtn.focus();
+
+    // Announce to screen readers
+    galleryStatus.textContent = 'Lightbox closed.';
+}
+
+// ========================================
+// Touch/Swipe Gesture Functions
+// ========================================
+
+/**
+ * Handles touch start event
+ * @param {TouchEvent} event
+ */
+function handleTouchStart(event) {
+    touchStartX = event.changedTouches[0].screenX;
+}
+
+/**
+ * Handles touch end event and determines swipe direction
+ * @param {TouchEvent} event
+ */
+function handleTouchEnd(event) {
+    touchEndX = event.changedTouches[0].screenX;
+    handleSwipe();
+}
+
+/**
+ * Processes the swipe gesture
+ */
+function handleSwipe() {
+    const swipeDistance = touchEndX - touchStartX;
+
+    if (Math.abs(swipeDistance) > SWIPE_THRESHOLD) {
+        if (swipeDistance > 0) {
+            // Swiped right - go to previous
+            goToPrevious();
+        } else {
+            // Swiped left - go to next
+            goToNext();
+        }
+    }
+}
+
+// ========================================
 // Event Listeners
 // ========================================
 
@@ -183,13 +353,45 @@ function initEventListeners() {
     // Next button click
     nextBtn.addEventListener('click', goToNext);
 
-    // Keyboard navigation - Arrow keys
+    // Fullscreen button
+    fullscreenBtn.addEventListener('click', openLightbox);
+
+    // Main image click opens lightbox
+    mainImage.addEventListener('click', openLightbox);
+    mainImage.style.cursor = 'pointer';
+
+    // Lightbox controls
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', goToPrevious);
+    lightboxNext.addEventListener('click', goToNext);
+
+    // Close lightbox on backdrop click
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-backdrop')) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard navigation
     document.addEventListener('keydown', handleKeyboardNavigation);
+
+    // Touch/swipe gestures
+    mainImageContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+    mainImageContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    // Also enable swipe in lightbox
+    lightbox.addEventListener('touchstart', handleTouchStart, { passive: true });
+    lightbox.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    // Hide skeleton when first image loads
+    mainImage.addEventListener('load', () => {
+        hideSkeleton();
+    });
 }
 
 /**
  * Handles keyboard navigation
- * @param {KeyboardEvent} event - The keyboard event
+ * @param {KeyboardEvent} event
  */
 function handleKeyboardNavigation(event) {
     // Only handle if not typing in an input field
@@ -214,6 +416,19 @@ function handleKeyboardNavigation(event) {
             event.preventDefault();
             updateMainImage(galleryImages.length - 1);
             break;
+        case 'Escape':
+            if (lightboxOpen) {
+                event.preventDefault();
+                closeLightbox();
+            }
+            break;
+        case 'f':
+        case 'F':
+            if (!lightboxOpen) {
+                event.preventDefault();
+                openLightbox();
+            }
+            break;
     }
 }
 
@@ -229,11 +444,16 @@ function initGallery() {
     initEventListeners();
 
     // Initial announcement for screen readers
-    galleryStatus.textContent = `Image gallery with ${galleryImages.length} images. Currently viewing ${galleryImages[0].title}.`;
+    galleryStatus.textContent = `Image gallery with ${galleryImages.length} images. Currently viewing ${galleryImages[0].title}. Press F for fullscreen.`;
 
     console.log('🖼️ Accessible Image Gallery initialized');
     console.log(`📸 ${galleryImages.length} images loaded`);
-    console.log('⌨️ Use arrow keys to navigate');
+    console.log('⌨️ Keyboard shortcuts:');
+    console.log('   ← → : Navigate images');
+    console.log('   Home/End : First/Last image');
+    console.log('   F : Open fullscreen');
+    console.log('   Esc : Close fullscreen');
+    console.log('👆 Touch: Swipe left/right to navigate');
 }
 
 // Run initialization when DOM is loaded
