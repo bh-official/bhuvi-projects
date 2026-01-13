@@ -63,7 +63,8 @@ const car={
     },
 }
 
-console.log(car.advert());
+console.log(car.advert())
+console.log(car.make)
 
 
 // Challenge 02
@@ -75,9 +76,42 @@ const book={
     advert: function(){
         return `Book: "${this.title}" by ${this.author}, ${this.pages} pages.`;
     },
-};
+}
 
-console.log(book.advert());
+console.log(book.advert())
+console.log(book.pages)
+
+
+
+
+// Challenge 03
+
+const bird={
+    species: "Parrot",
+    color: "Green",
+    wingspan: "25 cm",
+    canFly: true,
+    fly: function(location){
+        if(this.canFly===true){
+           
+            console.log(`The bird flies to ${location}.`);
+        } else {
+           
+            console.log(`The bird cannot fly.`);
+        }
+        
+    },
+    getwingspan:function(){
+        console.log(this)
+        return this.wingspan
+    },
+}
+
+bird.fly(`the tree`)
+bird.fly(`the sky`)
+
+const parrot = bird.getwingspan()
+console.log(parrot)
 
 
 
