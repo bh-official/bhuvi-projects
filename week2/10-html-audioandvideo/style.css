@@ -1,0 +1,62 @@
+h1{
+    color: blue;
+    text-align: center;
+    background-color: lightgray;
+}
+
+/* Make your own buttons and controls for your audio player. */
+button{
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+input[type="range"]{
+    width: 300px;
+    margin-top: 10px;
+}
+
+
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+iframe{
+    display: block;
+    margin: 20px auto;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+botton:hover{
+    background-color: lightblue;
+    cursor: pointer;
+}
+input[type="range"]:hover{
+    cursor: pointer;
+}
+
+/* Come up with a theme of some sort (from wacky, to retro, to modern and sleek). */
+
+
+
+/* Style your audio player with CSS. */
+audio, video{
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+button{
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+input[type="range"]{
+    width: 300px;
+    margin-top: 10px;
+}
