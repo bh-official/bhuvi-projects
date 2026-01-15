@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="./images/gallery.jpg">
+    <title>Accessible Image Gallery</title>
+</head>
+<body>
+    <h1>Accessible Image Gallery</h1>
+
+  <div class="gallery-container">
+    <div class="main-image-container">
+      <img 
+        id="mainImage" 
+        src="./images/mountain.jpg" 
+        alt="Mountain landscape with trees" 
+        aria-live="polite"
+      />
+    </div>
+
+    <div class="controls">
+      <button id="prevBtn" aria-label="Previous image">⬅ Previous</button>
+      <button id="nextBtn" aria-label="Next image">Next ➡</button>
+    </div>
+
+    <div class="thumbnails" id="thumbnailBar" aria-label="Thumbnail image list">
+      <!-- Thumbnails inserted by JavaScript -->
+    </div>
+  </div>
+
+</body>
+</html>
