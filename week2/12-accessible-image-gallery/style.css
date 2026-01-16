@@ -106,6 +106,7 @@ main{
     border: none;
     background: none;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 #thumbnails button.active {
@@ -248,7 +249,7 @@ body.thumbs-closed #viewer {
         overflow-x: auto;
         overflow-y: hidden;
         transform: translateY(0);
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 10px;
     }
