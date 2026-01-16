@@ -91,7 +91,7 @@ This makes the data easy to manage, extend, and loop through.
 
 *Loops*
 
-A forEach loop is used to:
+A for loop is used to:
 
 •	Generate all thumbnail buttons dynamically
 
@@ -227,8 +227,6 @@ A lot of time was spent debugging CSS issues related to flexbox, absolute positi
 *What could have gone better?*
 
 •   I tested and designed the gallery for mobile phones and laptops, and it works well on those screen sizes. Because of limited time, I did not fully adjust the layout for tablet screen sizes. As a result, the thumbnail scrolling does not work properly on some tablet sizes. If I had more time, I would add a separate layout for tablets and fix the scrolling and spacing issues.
-
-•	The code could be more organised
 
 •	More animations or loading indicators could be added
 

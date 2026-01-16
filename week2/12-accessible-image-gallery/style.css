@@ -18,6 +18,7 @@ main{
     position: relative;
 }
 
+/* Large Image section styling */
 #viewer{
     flex: 1;
     min-width: 0;
@@ -44,6 +45,7 @@ main{
     margin: 0;
 }
 
+/* Caption styling */
 #viewer figcaption {
     position: absolute;
     left: 0;
@@ -65,7 +67,7 @@ main{
     transition: transform 0.3s ease;
 }
 
-
+/* Desktop thumbnail styling */
 #thumbnails {
     position: absolute;
     top: 0;
@@ -118,6 +120,7 @@ main{
     outline: 3px solid orange;
 }
 
+/* Thumbnail toggle button styling */
 #toggle-thumbs {
     position: absolute;
     top: 12px;
@@ -152,6 +155,7 @@ body.thumbs-closed #toggle-thumbs {
     right: 12px !important;
 }
 
+/* Previous and Next Button styling */
 .nav-btn {
     position: absolute;
     top: 50%;
@@ -177,6 +181,7 @@ body.thumbs-closed #toggle-thumbs {
     background: rgba(0,0,0,0.85);
 }
 
+
 #prev-btn {
     left: 12px;
 }
@@ -185,6 +190,7 @@ body.thumbs-closed #toggle-thumbs {
     right: 12px;
     transition: right 0.3s ease;
 }
+
 
 /* When thumbnails are OPEN, push Next button left */
 body.thumbs-open #next-btn {
@@ -204,8 +210,6 @@ body.thumbs-open #viewer {
 body.thumbs-closed #viewer {
     margin-right: 0;
 }
-
-
 
 
 
@@ -235,8 +239,6 @@ body.thumbs-closed #viewer {
     body.thumbs-closed #viewer {
     margin-right: 0 !important;
     }
-
-
 
     #thumbnails {
         top: auto;
