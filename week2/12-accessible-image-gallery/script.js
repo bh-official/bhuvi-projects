@@ -1,3 +1,4 @@
+
 const image=document.querySelector('img');
 const imageCaption=document.querySelector('figcaption');
 
@@ -11,8 +12,6 @@ thumbnailsContainer.classList.add("hidden");
 document.body.classList.add("thumbs-closed");
 toggleBtn.textContent = "☰";
 
-
-document.body.classList.add("thumbs-closed");
 
 toggleBtn.addEventListener("click", () => {
     thumbsVisible = !thumbsVisible;
@@ -28,6 +27,7 @@ toggleBtn.addEventListener("click", () => {
         document.body.classList.remove("thumbs-open");
         document.body.classList.add("thumbs-closed");
     }
+    console.log(document.body.className);
 });
 
 

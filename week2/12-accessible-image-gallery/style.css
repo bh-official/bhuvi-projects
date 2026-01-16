@@ -118,7 +118,7 @@ main{
 }
 
 #toggle-thumbs {
-    position: fixed;
+    position: absolute;
     top: 12px;
     right: 12px;
     z-index: 9999;
@@ -133,6 +133,7 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: right 0.3s ease;
 }
 
 
@@ -140,8 +141,18 @@ main{
     background: rgba(0, 0, 0, 0.85);
 }
 
+/* When thumbnails are OPEN, push toggle button left */
+body.thumbs-open #toggle-thumbs {
+    right: 160px !important;
+}
+
+/* When thumbnails are CLOSED, keep it at the edge */
+body.thumbs-closed #toggle-thumbs {
+    right: 12px !important;
+}
+
 .nav-btn {
-    position: fixed;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 20;
@@ -171,7 +182,30 @@ main{
 
 #next-btn {
     right: 12px;
+    transition: right 0.3s ease;
 }
+
+/* When thumbnails are OPEN, push Next button left */
+body.thumbs-open #next-btn {
+    right: 160px !important;  /* width of thumbnail bar + padding */
+}
+
+/* When thumbnails are CLOSED, keep it at the edge */
+body.thumbs-closed #next-btn {
+    right: 12px !important;
+}
+
+body.thumbs-open #viewer {
+    margin-right: 140px;   /* same width as thumbnail bar */
+    transition: margin-right 0.3s ease;
+}
+
+body.thumbs-closed #viewer {
+    margin-right: 0;
+}
+
+
+
 
 
 @media (max-width: 768px) {
@@ -186,6 +220,22 @@ main{
     body.thumbs-closed #viewer figcaption {
         transform: translateY(0);
     }
+
+    /* In mobile: DO NOT move buttons */
+    body.thumbs-open #next-btn {
+    right: 12px !important;
+    }
+
+    body.thumbs-open #toggle-thumbs {
+    right: 12px !important;
+    }
+
+    body.thumbs-open #viewer,
+    body.thumbs-closed #viewer {
+    margin-right: 0 !important;
+    }
+
+
 
     #thumbnails {
         top: auto;
