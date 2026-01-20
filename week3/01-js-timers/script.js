@@ -1,50 +1,38 @@
-console.log(`JS Timers`);
+console.log("hello world");
 
-function sayHello(){
-    console.log(`Hello World!`);
-}
-const button= document.getElementByID("onClick");
-const statusText= document.getElementByID("status");
-let timerID = null;
-let isRunning =false;
+const clbutton = document.getElementById("onClick");
+const message = document.getElementById("msg");
+clbutton.addEventListener("click", () =>{
+// Show the message
+    message.style.display="block";
 
-button.addEventListener("Click", () => {
-    if(isRunning === false){
-        timerID = setTimeout(()=>{
-            console.log("Timer finished");
-            statusText.textContent = "Timer Finished";
-            button.textContent = "Start Timer";
-            isRunning=false;
-        }, 5000);
-        statusText.textContent = "Timer is running...";
-        button.textContent = "Stop Timer";
-        isRunning = true;
-    }else {
-    // STOP timer
-    clearTimeout(timeoutId);
-
-    statusText.textContent = "Timer is stopped";
-    button.textContent = "Start Timer";
-    isRunning = false;
-  }
+// Hide it after 5 seconds
+setTimeout(()=>{
+    message.style.display ="none";
+},5000);
 
 });
-// let myVar=setTimeout(sayHello, 1000);
-// clearTimeout(myVar, 6000);
 
+let seconds = 0;
+let timerID =null;
+const timerButton= document.getElementById("sttimer");
+const message1 = document.getElementById("msg1");
 
-
-// setTimeout(() => {
-// console.log(`first message`);
-// }, 5000);
-
-// setInterval(() => {
-//     console.log(`setting interval`);
-// }, 3000);
-
-// const myInterval =setInterval(function() {
-//     console.log(`I'm interval`);
-// }, 2000);
-
-// clearInterval(myInterval);
-// console.log (`cleared interval`);
+timerButton.addEventListener("click", ()=>{
+    if(timerID===null){
+        timerID=setInterval(()=>{
+            seconds++;
+            message1.textContent = seconds;
+        },1000);
+        timerButton.textContent= "Stop";
+    }
+    else{
+        clearInterval(timerID);
+        timerID=null;
+        timerButton.textContent="Start";
+        seconds=0;
+        message1.textContent="0";
+    }
+   
+}
+);
