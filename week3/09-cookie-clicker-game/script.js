@@ -91,12 +91,14 @@ function buyUpgrade(upgrade, event){
 
         cookieCountDisplay.innerText=cookieCount;
         cpsDisplay.innerText=cps;
-
+        
+        // floating text positioning 
         const rect = event.target.getBoundingClientRect();
         const x = rect.left + rect.width / 2;
         const y = rect.top;
 
         showFloatingText("+" + upgrade.increase + " CPS", x, y);
+        // if the floating text pops out play the buy sound
         playSound(buySound);
 
     }
@@ -109,7 +111,7 @@ function buyUpgrade(upgrade, event){
 }
 
 async function fetchData(){
-    try {
+    try { //stretch goal
     const response = await fetch("https://cookie-upgrade-api.vercel.app/api/upgrades");
 
     if (!response.ok) {
@@ -147,7 +149,7 @@ async function fetchData(){
         shop.appendChild(upgradeDiv);
     });
 
-} catch (error) {
+} catch (error) { // try/catch stretch goal
     console.error("Failed to load upgrades:", error);
     message.textContent = "❌ Failed to load shop. Please refresh the page.";
   }
