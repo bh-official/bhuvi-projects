@@ -14,7 +14,7 @@ body {
 h1 {
     text-align: center;
     margin: 10px 0;
-    color:rgb(216, 23, 65);
+    color:rgb(87, 11, 28);
     text-shadow: 0 0 10px #ff9800, 0 0 20px #ff9800;
 }
 
@@ -22,11 +22,11 @@ h2{
     color:blueviolet;
 }
 p{
-    color:rgb(56, 26, 5);
+    color:rgb(186, 99, 36);
 }
 
 #cookieCount, #cps{
-    color:blue;
+    color:rgb(86, 136, 179);
 }
 
 
@@ -89,7 +89,7 @@ p{
 }
 
 #shop div {
-    background: rgb(133, 205, 234);
+    background: rgb(202, 223, 164);
     border-radius: 10px;
     font-size: 14px;
     padding: 10px;
