@@ -266,7 +266,7 @@ I improved this by:
 
 ## 📸 Screenshot
 
-![Game Screenshot](screenshot.png)
+![Cookie Clicker Game](./screenshot.png)
 
 ---
 
