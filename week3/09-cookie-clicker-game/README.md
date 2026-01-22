@@ -266,7 +266,8 @@ I improved this by:
 
 ## 📸 Screenshot
 
-![Cookie Clicker Game](./screenshot.png)
+![Cookie Clicker Game](https://raw.githubusercontent.com/bh-official/bhuvi-projects/main/week3/09-cookie-clicker-game/screenshot.png)
+
 
 ---
 
