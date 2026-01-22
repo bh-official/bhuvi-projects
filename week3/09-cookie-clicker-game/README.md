@@ -268,6 +268,8 @@ I improved this by:
 
 ![Cookie Clicker Game](https://raw.githubusercontent.com/bh-official/bhuvi-projects/main/week3/09-cookie-clicker-game/screenshot.png)
 
+![Cookie Clicker Game](https://bh-official.github.io/bhuvi-projects/week3/09-cookie-clicker-game/screenshot.png)
+
 
 ---
 
