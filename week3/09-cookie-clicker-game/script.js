@@ -1,5 +1,9 @@
 let cookieCount=0;
 let cps=1;
+let isPaused = false; // Pause button in settings
+let upgradesData = []; // To store, upgrade data globally
+
+
 
 let savedCps=localStorage.getItem("cps");
 let savedCookies=localStorage.getItem("cookieCount");
@@ -19,16 +23,19 @@ const closeSettings = document.getElementById("closeSettings");
 const settingsPanel = document.getElementById("settingsPanel");
 const soundToggle = document.getElementById("soundToggle");
 const darkModeToggle = document.getElementById("darkModeToggle");
+const resetGameButton = document.getElementById("resetGame");
+const pauseBtn = document.getElementById("pauseBtn");
+
 const clickSound = new Audio("./audio/click.wav")
 const buySound = new Audio("./audio/buy.wav");
 
 // open close menus
 openSettings.addEventListener("click", () => {
-    settingsPanel.classList.remove("hidden");
+    settingsPanel.classList.add("open");
 });
 
 closeSettings.addEventListener("click", () => {
-    settingsPanel.classList.add("hidden");
+    settingsPanel.classList.remove("open");
 });
 
 // saving the settings in local storage 
@@ -54,6 +61,24 @@ function applyTheme() {
     }
 }
 
+// Reset button
+resetGameButton.addEventListener("click", () => {
+    const confirmReset = confirm("Are you sure you want to reset your game? This cannot be undone!");
+
+    if (!confirmReset) return;
+
+    // Clear all saved data
+    localStorage.clear();
+
+    // Reset variables
+    cookieCount = 0;
+    cps = 1;
+
+    // Reload the page to apply everything cleanly
+    location.reload();
+});
+
+
 // sound settings
 function playClickSound() {
     const soundEnabled = localStorage.getItem("soundEnabled") === "true";
@@ -74,20 +99,40 @@ image.addEventListener("click", function(e){
     showFloatingText("+1", e.clientX, e.clientY);
 
     playSound(clickSound);
+
+    updateShopButtons();
 });
 
 setInterval(function(){
+    if (isPaused) return; // stop game updates when paused
     cookieCount=cookieCount+cps;
     cookieCountDisplay.innerText=cookieCount;
     cpsDisplay.innerText=cps;
     localStorage.setItem("cookieCount", cookieCount);
     localStorage.setItem("cps",cps);
+    updateShopButtons();
 },1000)
+
+// Pause button logic
+pauseBtn.addEventListener("click", () => {
+    isPaused = !isPaused;
+
+    if (isPaused) {
+        pauseBtn.textContent = "▶️ Resume"; 
+        message.textContent = "⏸️ Game Paused";
+    } else {
+        pauseBtn.textContent = "⏸️ Pause";
+        message.textContent = "";
+    }
+});
+
 
 function buyUpgrade(upgrade, event){
     if(cookieCount>=upgrade.cost){
         cookieCount=cookieCount-upgrade.cost;
         cps=cps+upgrade.increase;
+        updateShopButtons();
+
 
         cookieCountDisplay.innerText=cookieCount;
         cpsDisplay.innerText=cps;
@@ -119,9 +164,10 @@ async function fetchData(){
     }
     
     const data=await response.json()
+    upgradesData = data;
     console.log(data)
 
-    data.forEach(function (upgrade){
+    upgradesData.forEach(function (upgrade){
         const upgradeDiv=document.createElement("div");
 
         const name=document.createElement("p");
@@ -134,8 +180,13 @@ async function fetchData(){
         const increase=document.createElement("p");
         increase.textContent=`Increase: ${upgrade.increase} CPS`;
         
+        // disabling the buttons if the cookie count is less than upgrade number
         const button=document.createElement("button");
         button.textContent= "Buy";
+        if(cookieCount<upgrade.cost){
+            button.disabled = true;
+        }
+        upgrade.button = button;
 
         button.addEventListener("click", function(e){
             buyUpgrade(upgrade, e);
@@ -149,11 +200,25 @@ async function fetchData(){
         shop.appendChild(upgradeDiv);
     });
 
+    updateShopButtons();
+
 } catch (error) { // try/catch stretch goal
     console.error("Failed to load upgrades:", error);
     message.textContent = "❌ Failed to load shop. Please refresh the page.";
   }
 }
+
+// function to disable the buttons which has high number than cookie count
+function updateShopButtons() {
+    const buttons = shop.querySelectorAll("button");
+
+    buttons.forEach((btn, index) => {
+        const upgrade = upgradesData[index];
+        if(!upgrade) return;
+        btn.disabled = cookieCount < upgrade.cost;
+    });
+}
+
 
 fetchData()
 

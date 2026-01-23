@@ -152,10 +152,11 @@ p{
 
 #settingsPanel {
     position: fixed;
-    top: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
+    top: 60px;
+    /* left: 50%; */
+    right: 15px;
+    /* transform: translateX(-50%); */
+    background: #f6b759;
     color: black;
     padding: 20px;
     border-radius: 10px;
@@ -163,6 +164,14 @@ p{
     z-index: 999;
     min-width: 250px;
     text-align: center;
+
+    /* Animation setup */
+    transform-origin: top right;
+    transform: scale(0.7);
+    opacity: 0;
+    pointer-events: none;
+
+    transition: all 0.25s ease;
 }
 
 body.dark #settingsPanel {
@@ -179,9 +188,12 @@ body.dark #settingsPanel input {
     accent-color: #ff9800;
 }
 
-.hidden {
-    display: none;
+#settingsPanel.open {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
 }
+
 
 body.dark {
     background-color: #1e1e1e;

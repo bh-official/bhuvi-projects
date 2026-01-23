@@ -25,7 +25,9 @@
     </label>
 
     <br><br>
-
+    <button id="resetGame">🔄 Reset Game</button>
+    <button id="pauseBtn">⏸️ Pause</button>
+    <br><br>
     <button id="closeSettings">Close</button>
 </div>
 </head>
@@ -33,23 +35,27 @@
 <h1> COOKIE CLICKER 🍪</h1>
 
 <div id="layout">
-    <!-- LEFT -->
+    <!-- Left -->
     <div id="left">
       <img id="cookie" src="./image/cookieimage.png" alt="Cookie">
     </div>
 
-    <!-- MIDDLE -->
+    <!-- Middle -->
     <div id="middle">
       <div class="info">
-        <p>Cookies: </p>
-        <p id="cookieCount">0</p>
-        <p>CPS: </p>
-        <p id="cps">1</p>
+        <div class="stat">
+          <p>Cookies: </p>
+          <p id="cookieCount">0</p>
+        </div>
+        <div class="stat">
+          <p>CPS: </p>
+          <p id="cps">1</p>
+        </div>
+        <p id="message"></p>
       </div>
-      <p id="message"></p>
     </div>
 
-    <!-- RIGHT -->
+    <!-- Right -->
     <div id="right">
       <h2>🛒 Shop</h2>
       <div id="shop"></div>
