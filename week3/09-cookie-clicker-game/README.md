@@ -32,7 +32,9 @@ https://github.com/bh-official/bhuvi-projects/tree/main/week3/09-cookie-clicker-
 - A ⚙️ Settings menu allows:
   - Enabling/disabling sound
   - Toggling dark mode
-
+  - Pausing / resuming the game
+  - Resetting the game
+  
 ---
 
 ## ✨ Features
@@ -41,13 +43,34 @@ https://github.com/bh-official/bhuvi-projects/tree/main/week3/09-cookie-clicker-
 - Automatic cookie generation using `setInterval`
 - Dynamic shop built from API data
 - Upgrade purchasing system
+- Disabled buy buttons if not affordable
 - Floating text animations
 - Sound effects
 - Dark mode
 - Settings menu
+- Pause / Resume system
+- Reset game system
 - Local storage save system
 - Error handling using `try/catch`
 - Responsive layout using Flexbox & Grid
+
+---
+
+## 🧰 Built-in JavaScript Learnt from this project
+
+- getBoundingClientRect() — to calculate exact screen positions for floating text animations.
+- Audio() — to create and play sound effects.
+- play() — to play sound effects when clicking or buying upgrades.
+- Number() — to convert stored string values into numbers.
+- confirm() — to show a confirmation dialog before resetting the game.
+- location.reload() — to reload the page after resetting the game.
+- Error() — to create a custom error object when something goes wrong (e.g., API failure).
+- throw — to manually stop execution and trigger error handling.
+- try / catch — to safely handle errors like failed network requests without crashing the app.
+- console.error() — to log error messages in the browser console for debugging.
+- remove() — to remove a DOM element from the page (used for deleting floating text after animation).
+- classList.add() — to add CSS classes dynamically (used for dark mode and opening panels).
+- e.clientX, e.clientY — to get the mouse click position on the screen (used to position floating text).
 
 ---
 
@@ -72,8 +95,6 @@ https://github.com/bh-official/bhuvi-projects/tree/main/week3/09-cookie-clicker-
 
 Upgrade data is fetched from: https://cookie-upgrade-api.vercel.app/api/upgrades
 
----
-
 The shop UI is generated dynamically from the API response.
 
 ---
@@ -86,6 +107,7 @@ The shop UI is generated dynamically from the API response.
 - The shop UI is created dynamically from fetched data
 - Floating text animations are positioned using `getBoundingClientRect()`
 - Settings are saved and restored using `localStorage`
+- UI state is kept in sync using updateShopButtons()
 
 ---
 
@@ -94,12 +116,13 @@ The shop UI is generated dynamically from the API response.
 - The shop fetch request is wrapped in a `try/catch`
 - If the API fails, an error message is shown to the user
 - If the player tries to buy an upgrade without enough cookies, a warning message appears
+- The game does not crash if something goes wrong
 
 ---
 
 ## 🧩 Challenges Faced and How I Overcame Them
 
-This project was much more difficult than it looked at the beginning. Even though the game seems simple, building it using JavaScript involved many different concepts working together, which was challenging for me.
+This project was much more difficult than it looked at the beginning. Even though the game seems simple, building it using JavaScript involved many different concepts working together.
 
 ### 1. Understanding How to Structure the Game Logic
 
@@ -107,6 +130,7 @@ At first, I did not know how to even start. I knew I needed a cookie that increa
 
 I solved this by:
 - Breaking the project into very small steps (first only clicking, then auto-increment, then shop, then settings).
+- Building features one by one.
 - Writing separate functions for each feature.
 - Slowly connecting everything together instead of trying to build everything at once.
 
@@ -114,16 +138,13 @@ I solved this by:
 
 ### 2. Managing Cookie Count and CPS Together
 
-One big confusion for me was understanding the difference between:
-- Clicking the cookie (manual increase)
-- Automatic increase using CPS every second
-
-At first, I mixed up these two logics and my numbers were behaving strangely.
+At first I mixed up:
+- Clicking logic
+- Automatic CPS logic
 
 I fixed this by:
 - Using two separate variables: `cookieCount` and `cps`
 - Using `setInterval` only for automatic increase
-- Updating the screen from these variables every second
 
 ---
 
@@ -143,17 +164,12 @@ I overcame this by:
 
 ### 4. Fetching Data from the API and Building the Shop
 
-This was one of the hardest parts. I had never built UI from API data before.
+This was one of the hardest parts. 
 
-Problems I faced:
-- I didn’t understand how `fetch`, `async`, and `await` work together
-- I didn’t know how to loop through the API data and create HTML elements
-
-I solved this by:
-- Logging the API data and studying its structure
-- Using `forEach` to loop through upgrades
-- Using `document.createElement()` to build the shop dynamically
-- Attaching event listeners inside the loop
+I Learned:
+- How `fetch`, `async`, and `await` work
+- How to loop through API data
+- How to dynamically create UI elements using JavaScript
 
 ---
 
@@ -171,7 +187,7 @@ After using this, the animation started appearing in the correct place.
 
 ### 6. Handling Errors Without Breaking the Layout
 
-When the API failed or when the user didn’t have enough cookies, my messages were breaking the layout.
+When the API failed, my messages were breaking the layout.
 
 I fixed this by:
 - Creating a dedicated `<p id="message">` area in the UI
@@ -180,23 +196,34 @@ I fixed this by:
 
 ---
 
-### 7. Implementing Settings (Sound & Dark Mode)
+### 7. Preventing Users from Buying Unaffordable Items
+
+At first, users could click buy even without enough cookies.
+
+I fixed this by:
+- Disabling buttons dynamically using `updateShopButtons()`
+
+---
+
+### 8. Implementing Settings (Sound, Dark Mode, Pause, Reset)
 
 This part was confusing because:
 - The settings had to persist after reload
 - The UI had to change based on saved settings
 - Sounds should only play if enabled
+- Dame must stop when paused
 
 I solved this by:
 - Saving settings in `localStorage`
 - Creating `loadSettings()` and `applyTheme()` functions
 - Checking settings before playing any sound
+- Adding a pause flag `isPaused`
 
 ---
 
-### 8. Managing a Bigger JavaScript File
+### 9. Managing a Large JavaScript File
 
-As the project grew, the file became long and difficult to understand.
+As the project grew, the file became long and complex.
 
 I improved this by:
 - Grouping related logic into functions
@@ -211,8 +238,8 @@ I improved this by:
 - How to use APIs in a real project
 - How to dynamically create UI from data
 - How to use Local Storage properly
-- How `setInterval` works in real apps
-- How to structure a bigger JavaScript file
+- How game loops work using `setInterval` 
+- How to structure a larger JavaScript programs
 - How to debug UI and logic problems
 
 ---
@@ -236,13 +263,14 @@ I improved this by:
 
 ---
 
-### ❓ Were there any requirements or goals that were difficult?
+### ❓ Were there any requirements or goals that were unable to achieve?
 
-- Understanding how to structure the game logic and game loop
-- Managing UI updates and game state together
-- Positioning floating animations correctly on the screen
-- Connecting the settings menu to real game behaviour (sound and theme)
-- Managing many features in one project 
+- All core requirements of the assignment were successfully completed.
+- The game includes API integration, automatic cookie generation, a dynamic shop system, local storage saving, settings, animations, and error handling.
+- One optional improvement that was not fully implemented is saving the ownership state of each individual upgrade.
+- Instead, the game saves and restores the total CPS value, which still correctly restores gameplay progress.
+- This decision was made because the current implementation already satisfies all assignment requirements and stretch goals.
+- No required features were left incomplete; the remaining ideas are optional enhancements rather than missing functionality.
 
 ---
 
@@ -251,7 +279,7 @@ I improved this by:
 - The shop system works dynamically using API data
 - The game saves and restores progress correctly
 - The UI feels interactive and game-like with animations and sounds
-- The settings system makes the game feel more professional and complete
+- The settings system makes the game feel more complete and polished
 
 ---
 
@@ -278,6 +306,6 @@ Built by: **Bhuvaneswari**
 
 ## 🏆 Final Words
 
-This project helped me move from writing small scripts to building a **real interactive application**. It improved my confidence in JavaScript and helped me understand how real web apps are structured.
+This project helped me move from writing small scripts to building a **real interactive application**. It improved my confidence in JavaScript and helped me understand how real web apps and game systems are structured.
 
 

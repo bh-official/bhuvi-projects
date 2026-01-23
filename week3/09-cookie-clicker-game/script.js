@@ -49,8 +49,8 @@ darkModeToggle.addEventListener("change", () => {
     applyTheme();
 });
 
-// applying theme
 
+// applying theme darkmode and light mode
 function applyTheme() {
     const darkMode = localStorage.getItem("darkMode") === "true";
 
@@ -143,15 +143,9 @@ function buyUpgrade(upgrade, event){
         const y = rect.top;
 
         showFloatingText("+" + upgrade.increase + " CPS", x, y);
-        // if the floating text pops out play the buy sound
+        // while the floating text pops out play the buy sound
         playSound(buySound);
 
-    }
-    else{
-        message.textContent = "❌ Not enough cookies!";
-        setTimeout(() => {
-        message.textContent = "";
-        }, 1500);
     }
 }
 
@@ -202,10 +196,10 @@ async function fetchData(){
 
     updateShopButtons();
 
-} catch (error) { // try/catch stretch goal
-    console.error("Failed to load upgrades:", error);
-    message.textContent = "❌ Failed to load shop. Please refresh the page.";
-  }
+    } catch (error) { // try/catch stretch goal
+        console.error("Failed to load upgrades:", error);
+        message.textContent = "❌ Failed to load shop. Please refresh the page.";
+    }
 }
 
 // function to disable the buttons which has high number than cookie count
@@ -218,7 +212,6 @@ function updateShopButtons() {
         btn.disabled = cookieCount < upgrade.cost;
     });
 }
-
 
 fetchData()
 
