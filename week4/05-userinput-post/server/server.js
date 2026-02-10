@@ -16,12 +16,12 @@ const db = new pg.Pool({
 })
 
 app.get('/', (request, response) => {
-    response.json({"message": "hello"})
+    response.send("hello!")
 })
 
-// app.get(`/bees`, (request, response) => { 
-//     response.send(`Hello from Bees!!!`)
-// })
+app.get(`/bees`, (request, response) => { 
+    response.json({message:"Hello from Bees!!!"})
+})
 
 
 app.post('/jokes', (req, res) => {

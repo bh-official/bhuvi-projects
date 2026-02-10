@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Speech - OpenAI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Text to Speech</h1>
+        <div class="input-group">
+            <textarea id="textInput" placeholder="Enter text to convert to speech..."></textarea>
+        </div>
+        
+        <div class="controls">
+            <div class="voice-selector">
+                <label for="voice">Voice:</label>
+                <select id="voice">
+                    <option value="alloy">Alloy</option>
+                    <option value="echo">Echo</option>
+                    <option value="fable">Fable</option>
+                    <option value="onyx">Onyx</option>
+                    <option value="nova">Nova</option>
+                    <option value="shimmer">Shimmer</option>
+                </select>
+            </div>
+            
+            <button id="generateBtn" class="generate-btn">
+                <span id="btnText">Generate Speech</span>
+                <span id="loading" class="loading">Generating...</span>
+            </button>
+        </div>
+        
+        <div id="audioContainer" class="audio-container hidden">
+            <audio id="audioPlayer" controls></audio>
+            <a id="downloadLink" class="download-link" download="speech.mp3">Download</a>
+        </div>
+        
+        <div id="error" class="error hidden"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
