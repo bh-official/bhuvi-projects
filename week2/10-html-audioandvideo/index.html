@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="style.css">
+     <script src="script.js" defer></script> 
+     <script src="https://www.youtube.com/iframe_api" defer></script>
+    <title>Audios and Videos</title>
+</head>
+<body>
+    <h1>Image Example</h1>
+    <img src="./images/image.png" alt="Sample Image" width="100%">
+
+    <div class="retro-audio">
+        <h1>My Audio Player</h1>
+        <audio src="./audios/audio.mp3" id="radio" controls></audio>
+            <div class="retro-controls">
+            <button id="play">Play</button>
+            <button id="pause">Pause</button>
+            <button id="stop">Stop</button>
+            <button id="mute">Mute</button>
+            <button id="unmute">Unmute</button>
+            <button id="skipforward">Skip Forward</button>
+            <button id="skipbackward">Skip Backward</button>
+        </div>
+    </div>
+
+    
+
+    <!-- <h1>Embedded YouTube Shorts</h1>
+    <iframe id="myvideo1" width="315" height="576" src="https://www.youtube.com/embed/G9NRzrx7m4U" title="switzerland 4k | switzerland 4k video | switzerland" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <h1>Embedded YouTube Video</h1>
+    <iframe id="myvideo2" width="560" height="315" src="https://www.youtube.com/embed/nqye02H_H6I?si=b0YG0MDrx70R7MKI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+
+    
+
+       <div class="video-grid">
+           <h1>My Video</h1>
+               <video src="./videos/sample.mp4" controls></video>
+           
+               <input type="range" min="0" max="1" step="0.01" />
+       </div>
+
+
+<div class="video-card">
+    <h1>Embedded YouTube Shorts</h1>
+    <div id="player1"></div>
+    <div class="volume-control"><input type="range" id="volume1" min="0" max="100" value="100"></div>
+    
+    
+    
+    <h1>Embedded YouTube Video</h1>
+    <div id="player2"></div>
+    <div class="volume-control"><input type="range" id="volume2" min="0" max="100" value="100"></div>
+    
+    
+    
+    
+</div>
+
+
+
+</body>
+</html>

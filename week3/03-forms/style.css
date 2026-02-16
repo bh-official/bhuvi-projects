@@ -1,0 +1,14 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+background-color: aqua;
+display:flex;
+text-align: center;
+}
+
+form{
+    border-color: beige;
+}
+

@@ -1,0 +1,34 @@
+header {
+  background: plum;
+  height: 100px;
+  outline: 1px solid red;
+}
+
+nav {
+  background: pink;
+  padding: 10px;
+  outline: 1px solid blue;
+}
+
+nav a {
+  margin-right: 15px;
+}
+
+main {
+  background: lightblue;
+  min-height: 300px;
+  outline: 1px solid red;
+}
+
+section {
+  background: peachpuff;
+  margin: 20px;
+  padding: 20px;
+  outline: 1px solid green;
+}
+
+footer {
+  background: lime;
+  height: 100px;
+  outline: 1px solid red;
+}

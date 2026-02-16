@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-right: 50px;
+  /* padding-bottom: 5px; */
+  background: #ffffff;
+    font-family: "Architects Daughter", cursive;
+}
+
+
+
+.page {
+  width: 100%;
+  max-width: 1600px;
+  border: 3px solid #333;
+  border-radius: 25px;
+  padding-top: 75px;
+  padding-bottom:25px;
+  min-height: 820px;
+  position: relative;
+}
+
+
+
+.top-text {
+  text-align: center;
+  margin-top: 60px;
+}
+
+
+.top-text .small {
+  font-size: 24px;
+  font-weight:bold;
+}
+
+.top-text h1 {
+  margin: 5px 0;
+  font-size: 42px;
+  font-weight: normal;
+}
+
+.top-text .tagline {
+  color: #999;
+ 
+  font-size: 26px;
+  margin-top: 10px;
+}
+
+
+
+.middle {
+  margin-top: 100px;   /* more space above middle */
+  display: flex;
+  justify-content: center;
+  padding-top:0px;
+  padding-bottom:20px;
+  font-weight:bold;
+}
+
+
+
+.address,
+.contact {
+  padding-left: 75px;
+  padding-right: 75px;
+  padding-top:0px;
+  font-size: 28px;
+  line-height: 1.6;
+}
+
+
+
+.footer {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+}
+
+
+

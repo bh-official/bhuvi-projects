@@ -1,0 +1,29 @@
+img{
+  height: 300px;
+  width: 300px;
+}
+
+Header{
+  background-color: #df8e8e;
+  color:blueviolet;
+  padding: 20px;
+  text-align: center;
+}
+
+Footer{
+  background-color: #df8e8e;
+  color:blueviolet;
+  padding: 20px;
+  text-align: center;
+}
+
+/* .container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+} */
+
+h2{
+  color:darkgreen;
+}

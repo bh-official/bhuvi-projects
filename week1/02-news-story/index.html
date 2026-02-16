@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+      <nav class ="navbar">
+        <a href="index.html">Home</a>
+        <a href="news.html">News</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <br />
+      <marquee>
+        Breaking News: City Council Approves New Public Park
+      </marquee>
+    </header>
+    
+        <h1 class="highlight">Daily News Today</h1>
+        <p class="highlight">Your trusted source for simple and clear news</p>
+        <p class="date">Today’s date: <span id="date"></span></p>
+
+    <script>
+        const today = new Date();
+        document.getElementById("date").textContent = today.toDateString();
+    </script>
+    
+
+    <main>
+        <section>
+            <h2>Main Story</h2>
+            
+            <article>
+              <h3>New Technology Training Centre Opens in Leicester</h3>
+            <p>
+                A new technology training centre has opened in Leicester this week to help people learn digital and software development skills. 
+                The centre aims to support beginners and career changers by providing practical training in web development and IT.
+            </p>
+            <p>
+                Local officials said the centre will help improve job opportunities and encourage more people to move into technology based careers. 
+                Many students have already registered, and classes are expected to start this month.
+            </p>
+            </article>
+        </section>
+        <br />
+
+        <section>
+            <h2>Other News</h2>
+
+            <article>
+                <h4>Community Library Gets New Computers</h4>
+                <p>
+                    The local community library has received new computers to help visitors access the internet and learn basic digital skills.
+                </p>
+            </article>
+
+            <article>
+                <h4>City Park Renovation Completed</h4>
+                <p>
+                    The city park renovation has been completed, and the park is now open to the public with new walking paths and seating areas.
+                </p>
+            </article>
+
+            <article>
+                <h4>Free Coding Workshops Announced</h4>
+                <p>
+                    Free coding workshops for beginners will be held next month to help more people get started in programming and web development.
+                </p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 City News Network. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/6953/6953922.png">
+    <title>Cookie Clicker Game</title>
+    <button id="openSettings">⚙️ Settings</button>
+
+    <div id="settingsPanel" class="hidden">
+    <h3>⚙️ Settings</h3>
+
+    <label>
+        <input type="checkbox" id="soundToggle">
+        Enable Sound
+    </label>
+
+    <br><br>
+
+    <label>
+        <input type="checkbox" id="darkModeToggle">
+        Dark Mode
+    </label>
+
+    <br><br>
+    <button id="resetGame">🔄 Reset Game</button>
+    <button id="pauseBtn">⏸️ Pause</button>
+    <br><br>
+    <button id="closeSettings">Close</button>
+</div>
+</head>
+<body>
+<h1> COOKIE CLICKER 🍪</h1>
+
+<div id="layout">
+    <!-- Left -->
+    <div id="left">
+      <img id="cookie" src="./image/cookieimage.png" alt="Cookie">
+    </div>
+
+    <!-- Middle -->
+    <div id="middle">
+      <div class="info">
+        <div class="stat">
+          <p>Cookies: </p>
+          <p id="cookieCount">0</p>
+        </div>
+        <div class="stat">
+          <p>CPS: </p>
+          <p id="cps">1</p>
+        </div>
+        <p id="message"></p>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div id="right">
+      <h2>🛒 Shop</h2>
+      <div id="shop"></div>
+    </div>
+
+    
+
+</div>
+</body>
+</html>

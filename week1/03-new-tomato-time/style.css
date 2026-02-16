@@ -1,0 +1,212 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+  background: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.header-container {
+  background-color: tomato;
+  color: white;
+  padding: 40px 60px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+header h1 {
+  color: white;
+}
+
+/* Navigation (Flexbox) */
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero Sections */
+.hero {
+  height: 100vh;
+  background-image: url("images/tomatoes.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-bottom: 1px solid white;
+}
+
+.hero:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: white;
+}
+/* Other background images */
+.timers {
+  background-image: url("images/timer.jpg");
+}
+
+.bags {
+  background-image: url("images/bag.jpg");
+}
+
+/* Text overlay */
+.overlay-text {
+  color: tomato;
+  position: absolute;
+  bottom: 10%;
+  left: 3%;
+  background: rgba(255, 255, 255, 0.85);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1100px;
+  border-radius: 8px;
+}
+
+.overlay-text h1 {
+  color: tomato;
+  font-size: 40px;
+  ;
+  
+}
+
+.tag {
+  font-size: 16px;
+  color: tomato;
+  margin-bottom: 15px;
+}
+
+/* Buttons */
+button {
+  font-weight: bold;
+  margin-top: 30px;
+  width: 200px;
+  height: 50px;
+  padding: 10px;
+  background: darkgreen;
+  color: white;
+  cursor: pointer;
+  border-color: darkgreen;
+   }
+
+/* Button hover effect */
+button:hover {
+  background: white;
+  color: black;
+  border-color: tomato;
+  border: 2px solid tomato;
+}
+
+/* Footer */
+footer {
+  background: tomato;
+  color: white;
+  text-align: center;
+  padding: 40px 60px;
+}
+
+/* Back to top link */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: tomato;
+  color: white;
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* About section text */
+.about-text p {
+  margin-top: 70px;
+  line-height: 1.6;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 22px;
+  color:white;
+  margin-left: 50px;
+  margin-right: 50px;
+  justify-content: center;
+
+}
+
+/* Tag1 */
+.tag1 {
+  font-size: 28px;
+  padding-top: 150px;
+  text-align:center;
+  font-weight: bold;
+  color:white;
+  
+}
+
+/* About section */
+.image{
+  background-image: url("images/abouttomatoes.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+
+}
+
+img:not(.footer-logos img) {
+  width: 100%;
+}
+
+
+/* Footer logos */
+.footer-logos {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.footer-logos img {
+  width: 40px !important;     /* small size */
+  height: 30px !important;
+  max-width: 40px !important;
+  max-height: 30px !important;
+  cursor: pointer;
+}
+.footer-logos img:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s;
+}
+
+
+

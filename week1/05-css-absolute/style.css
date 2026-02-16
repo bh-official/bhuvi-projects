@@ -1,0 +1,57 @@
+.image1{
+    width: 100%;
+    height: auto;
+    background-image: url('https://media.istockphoto.com/id/543465140/photo/oil-painting-of-eiffel-tower-france-art-work.jpg?s=612x612&w=0&k=20&c=jorVhJXuNMwX2lChQAch57r_gFWibTG-TQEtcHtrHKU=');
+}
+.static{
+    
+    position:static;
+    top:100px;
+    left:500px;
+
+}
+.image2{
+    width: 100%;
+    height: auto;
+    background-image: url('https://media.istockphoto.com/id/636761588/photo/used-brushes-on-an-artists-palette-of-colorful-oil-paint.jpg?s=612x612&w=0&k=20&c=38YQxVJVWnNfvGtlb7AXMx_ItyHZMEdmWenNkWNQ91g=');
+}
+.relative{
+    
+    position:relative;
+}
+.image3{
+    width: 100%;
+    height: auto;
+    background-image: url('https://thumbs.dreamstime.com/b/mind-spiritual-human-meditation-mountain-abstract-art-watercolor-painting-illustration-design-drawing-mind-spiritual-human-193099889.jpg');
+}
+.absolute{
+    
+    position:absolute;
+}
+.image4{
+    width: 100%;
+    height: auto;
+    background-image: url('https://i.icanvas.com/ic3/hero-image/classic-fine-art-300.jpg?fit=crop&width=1440&height=810');
+}
+.fixed{
+   
+    position:fixed;
+}
+.image5{
+    width: 100%;
+    height: auto;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1K_ou9G53t-o5r9mBOI4wehrE-23ae9zyYg&s');
+}
+.sticky{
+    position:sticky;
+}
+.box{
+    width: 250px;
+    height: 250px;
+    background-color: lightgray;
+}
+p{
+    font-family: Arial, sans-serif;
+    color: #333;    
+}
+   
